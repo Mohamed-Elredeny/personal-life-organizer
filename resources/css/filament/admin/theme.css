@@ -1,0 +1,238 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+/* ============================
+   Life OS — professional polish
+   ============================ */
+
+:root {
+    --primary-50:  246, 246, 255;
+    --primary-100: 235, 235, 254;
+    --primary-200: 213, 213, 252;
+    --primary-300: 180, 180, 250;
+    --primary-400: 140, 140, 248;
+    --primary-500: 99,  102, 241;
+    --primary-600: 79,  70,  229;
+    --primary-700: 67,  56,  202;
+    --primary-800: 55,  48,  163;
+    --primary-900: 49,  46,  129;
+    --primary-950: 30,  27,  75;
+}
+
+/* Smoother typography */
+.fi-body {
+    font-feature-settings: "ss01", "cv11", "cv02";
+    letter-spacing: -0.005em;
+}
+
+/* Brand wordmark */
+.fi-logo {
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, rgb(99 102 241), rgb(217 70 239));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Sidebar polish */
+.fi-sidebar {
+    backdrop-filter: blur(12px);
+}
+
+.fi-sidebar-nav-groups {
+    gap: 0.25rem;
+}
+
+.fi-sidebar-group-label {
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    color: rgb(100 116 139) !important;
+    padding-left: 0.75rem !important;
+}
+
+.dark .fi-sidebar-group-label {
+    color: rgb(148 163 184) !important;
+}
+
+.fi-sidebar-item-button {
+    border-radius: 0.5rem !important;
+    transition: all 0.18s ease !important;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-button {
+    background: linear-gradient(135deg, rgb(99 102 241 / 0.12), rgb(99 102 241 / 0.06)) !important;
+    color: rgb(67 56 202) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 1px 2px rgb(99 102 241 / 0.08);
+}
+
+.dark .fi-sidebar-item-active .fi-sidebar-item-button {
+    background: linear-gradient(135deg, rgb(99 102 241 / 0.18), rgb(99 102 241 / 0.08)) !important;
+    color: rgb(165 180 252) !important;
+}
+
+/* Top bar */
+.fi-topbar {
+    backdrop-filter: blur(12px);
+    background: rgb(255 255 255 / 0.75) !important;
+    border-bottom: 1px solid rgb(226 232 240 / 0.6);
+}
+
+.dark .fi-topbar {
+    background: rgb(15 23 42 / 0.75) !important;
+    border-bottom: 1px solid rgb(30 41 59 / 0.6);
+}
+
+/* Page headings */
+.fi-header-heading {
+    font-weight: 700 !important;
+    letter-spacing: -0.025em !important;
+    font-size: 1.75rem !important;
+}
+
+/* Cards & sections */
+.fi-section {
+    border-radius: 0.875rem !important;
+    border: 1px solid rgb(226 232 240) !important;
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 1px 3px rgb(15 23 42 / 0.03);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dark .fi-section {
+    border-color: rgb(30 41 59) !important;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+}
+
+/* Tables */
+.fi-ta {
+    border-radius: 0.875rem !important;
+    overflow: hidden;
+}
+
+.fi-ta-header-cell {
+    font-weight: 600 !important;
+    font-size: 0.7rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: rgb(100 116 139) !important;
+    background: rgb(248 250 252 / 0.5);
+}
+
+.dark .fi-ta-header-cell {
+    color: rgb(148 163 184) !important;
+    background: rgb(15 23 42 / 0.3);
+}
+
+.fi-ta-row {
+    transition: background-color 0.12s ease;
+}
+
+.fi-ta-row:hover {
+    background: rgb(248 250 252 / 0.8) !important;
+}
+
+.dark .fi-ta-row:hover {
+    background: rgb(30 41 59 / 0.4) !important;
+}
+
+/* Buttons */
+.fi-btn {
+    font-weight: 600 !important;
+    letter-spacing: -0.005em !important;
+    transition: all 0.15s ease !important;
+}
+
+.fi-btn[data-color="primary"]:not([disabled]):not(.fi-disabled) {
+    background: linear-gradient(135deg, rgb(99 102 241), rgb(79 70 229)) !important;
+    box-shadow: 0 1px 2px rgb(99 102 241 / 0.3), inset 0 1px 0 rgb(255 255 255 / 0.15);
+}
+
+.fi-btn[data-color="primary"]:not([disabled]):not(.fi-disabled):hover {
+    background: linear-gradient(135deg, rgb(79 70 229), rgb(67 56 202)) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgb(99 102 241 / 0.35);
+}
+
+/* Badges */
+.fi-badge {
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+    border: 1px solid currentColor;
+}
+
+/* Stats overview cards */
+.fi-wi-stats-overview-stat {
+    border-radius: 1rem !important;
+    border: 1px solid rgb(226 232 240) !important;
+    background: linear-gradient(180deg, rgb(255 255 255), rgb(248 250 252)) !important;
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fi-wi-stats-overview-stat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgb(15 23 42 / 0.06);
+}
+
+.dark .fi-wi-stats-overview-stat {
+    border-color: rgb(30 41 59) !important;
+    background: linear-gradient(180deg, rgb(30 41 59 / 0.6), rgb(15 23 42 / 0.6)) !important;
+}
+
+.fi-wi-stats-overview-stat-value {
+    font-weight: 700 !important;
+    letter-spacing: -0.03em !important;
+    background: linear-gradient(135deg, rgb(15 23 42), rgb(51 65 85));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dark .fi-wi-stats-overview-stat-value {
+    background: linear-gradient(135deg, rgb(248 250 252), rgb(203 213 225));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fi-wi-stats-overview-stat-label {
+    text-transform: uppercase !important;
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    color: rgb(100 116 139) !important;
+}
+
+/* Charts */
+.fi-wi-chart {
+    border-radius: 1rem !important;
+}
+
+/* Inputs */
+.fi-input, .fi-select-input, .fi-textarea {
+    border-radius: 0.625rem !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.fi-input:focus, .fi-select-input:focus, .fi-textarea:focus {
+    box-shadow: 0 0 0 3px rgb(99 102 241 / 0.18) !important;
+}
+
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(148 163 184 / 0.35);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(100 116 139 / 0.5);
+}
