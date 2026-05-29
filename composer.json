@@ -9,7 +9,6 @@
         "php": "^8.2",
         "bezhansalleh/filament-language-switch": "^3.1",
         "filament/filament": "^3.2",
-        "jeffgreco13/filament-breezy": "*",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9"
     },
@@ -39,6 +38,13 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
             "@php artisan filament:upgrade"
+        ],
+        "post-install-cmd": [
+            "@php artisan vendor:publish --tag=filament-translations --ansi --force",
+            "@php artisan vendor:publish --tag=filament-panels-translations --ansi --force",
+            "@php artisan vendor:publish --tag=filament-forms-translations --ansi --force",
+            "@php artisan vendor:publish --tag=filament-tables-translations --ansi --force",
+            "@php artisan vendor:publish --tag=filament-actions-translations --ansi --force"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

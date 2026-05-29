@@ -95,6 +95,49 @@ resources/css/filament/admin/theme.css   # Custom Filament theme
 
 Most models include an `is_shared` flag. The `App\Models\Concerns\BelongsToOwner` trait adds a global scope that returns rows where `user_id = current_user` OR `is_shared = true`. Records are created with the current user's id automatically.
 
+## Deploy to Laravel Cloud
+
+The repo is deploy-ready. Filament translations re-publish automatically on `composer install` (via `post-install-cmd`), so the gitignored `lang/vendor/` rebuilds on every deploy.
+
+### One-time setup at cloud.laravel.com
+
+1. **Sign up** at <https://cloud.laravel.com> with your GitHub account.
+2. **New project** → connect repo `Mohamed-Elredeny/personal-life-organizer` → branch `main`.
+3. **Add a MySQL database** in the same project (cloud.laravel.com provisions one in a click). Note: Laravel Cloud auto-injects the DB connection env vars.
+4. **Set environment variables** (Settings → Environment):
+    - `APP_NAME` — `Life OS`
+    - `APP_ENV` — `production`
+    - `APP_DEBUG` — `false`
+    - `APP_TIMEZONE` — `Asia/Riyadh`
+    - `APP_URL` — your cloud URL (e.g. `https://life-os-xxx.laravel.cloud`)
+    - `APP_KEY` — leave empty; Cloud's first deploy generates one. Or run locally: `php artisan key:generate --show` and paste.
+    - `LOG_LEVEL` — `warning`
+    - `SESSION_DRIVER` — `database`
+    - `CACHE_STORE` — `database`
+    - `QUEUE_CONNECTION` — `database`
+    - DB vars are auto-injected from the linked MySQL.
+5. **Build & deploy commands** (Cloud usually auto-detects, but verify):
+    - Install: `composer install --no-dev --optimize-autoloader` then `npm ci && npm run build`
+    - Release (runs each deploy): `php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan filament:cache-components`
+6. **Trigger first deploy** — every `git push origin main` re-deploys automatically.
+
+### Seed the database (one-time, after first deploy)
+
+Open the Cloud project's **Console / Shell** tab and run:
+
+```bash
+php artisan db:seed --force
+```
+
+This creates the two default users from `DatabaseSeeder.php`. **Change their passwords immediately** via Profile.
+
+### Common gotchas
+
+- **First-time 500 with "No APP_KEY"** — generate one locally with `php artisan key:generate --show`, paste into Cloud env, redeploy.
+- **Assets 404** — make sure `npm run build` ran in the build pipeline. Cloud should auto-detect Vite.
+- **Filament panel missing translations** — verify `composer install` ran the `post-install-cmd` (check deploy logs for `Publishing [filament-translations] assets`).
+- **Sessions / login fail** — `SESSION_DRIVER=database` requires the `sessions` table (created by `php artisan migrate`).
+
 ## License
 
 Private — for personal use.
