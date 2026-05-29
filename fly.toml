@@ -1,5 +1,5 @@
 # fly.toml — Life OS (personal-life-organizer)
-# Generated for: Fly.io · region bah (Bahrain) · SQLite on volume
+# Generated for: Fly.io · region fra (Frankfurt) · SQLite on volume · FrankenPHP
 
 app = "personal-life-organizer"
 primary_region = "fra"
@@ -8,7 +8,7 @@ primary_region = "fra"
   dockerfile = "Dockerfile"
 
 [deploy]
-  release_command = "sh -c 'mkdir -p /var/www/html/storage/database && touch /var/www/html/storage/database/life-os.sqlite && php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan event:cache && php artisan filament:cache-components'"
+  release_command = "sh -c 'mkdir -p /app/storage/database && touch /app/storage/database/life-os.sqlite && php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan event:cache && php artisan filament:cache-components'"
 
 [env]
   APP_ENV = "production"
@@ -19,7 +19,7 @@ primary_region = "fra"
   LOG_CHANNEL = "stderr"
   LOG_LEVEL = "warning"
   DB_CONNECTION = "sqlite"
-  DB_DATABASE = "/var/www/html/storage/database/life-os.sqlite"
+  DB_DATABASE = "/app/storage/database/life-os.sqlite"
   SESSION_DRIVER = "database"
   SESSION_LIFETIME = "120"
   CACHE_STORE = "database"
@@ -28,10 +28,12 @@ primary_region = "fra"
   FILESYSTEM_DISK = "local"
   MAIL_MAILER = "log"
   VITE_APP_NAME = "Life OS"
+  SERVER_NAME = ":8080"
+  CADDY_GLOBAL_OPTIONS = "auto_https off"
 
 [[mounts]]
   source = "life_os_data"
-  destination = "/var/www/html/storage/database"
+  destination = "/app/storage/database"
 
 [http_service]
   internal_port = 8080
@@ -44,7 +46,7 @@ primary_region = "fra"
   [[http_service.checks]]
     interval = "30s"
     timeout = "5s"
-    grace_period = "10s"
+    grace_period = "15s"
     method = "GET"
     path = "/up"
 
